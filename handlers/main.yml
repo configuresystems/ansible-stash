@@ -1,0 +1,13 @@
+---
+
+- name: restart stash
+  service: name=stash
+           state=restarted
+
+- name: start stash
+  service: name=stash
+           state=started
+
+- name: stop stash
+  service: name=stash
+           state=stopped

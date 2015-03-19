@@ -1,0 +1,41 @@
+---
+language: python
+python: "2.7"
+
+env:
+  - SITE=test.yml
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y curl python-pip python-apt gcc
+  - sudo netstat -plnt
+
+install:
+  # Install Ansible 1.8.4 per these tests.
+  - pip install ansible==1.8.4
+
+  # Add ansible.cfg to pick up roles path.
+  - printf '[defaults]\nroles_path = ../' > ansible.cfg
+
+before_script:
+  - mysql -e 'create database stash;'
+  - sudo mysql stash -e 'show tables;'
+ 
+script:
+  # Check the role/playbook's syntax.
+
+  - ansible-playbook -i tests/inventory/test tests/$SITE --syntax-check
+
+  # Run the role/playbook with ansible-playbook.
+  - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo -vvv
+
+  - curl -q http://localhost:7791
+
+  - curl -v http://localhost:7991
+
+  # Debugging
+
+  - sudo tail -200 /opt/atlassian/stash/logs/catalina.out
+
+  - sudo netstat -plnt
+

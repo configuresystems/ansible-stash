@@ -1,0 +1,45 @@
+---
+
+- name: Download Stash
+  get_url: url={{ stashUrl }}
+           dest=/tmp
+  sudo: yes
+
+- name: Set Perms on Stash File
+  file: path=/tmp/{{ stashExec }}
+        owner=root
+        group=root
+        mode=0777  
+  sudo: yes
+ 
+- name: Copy Stash Template
+  template: src=response.varfile.j2
+            dest=/tmp/response.varfile
+  sudo: yes
+
+- name: Install Stash
+  raw: /tmp/{{ stashExec }} -q -varfile /tmp/response.varfile
+  sudo: yes
+
+- name: Copy Stash init.d File
+  template: src=stash.init.d.j2
+            dest=/etc/init.d/stash
+  sudo: yes
+
+- name: Download MySQL Connector
+  get_url: url={{ mysqlConnectorUrl }}
+           dest={{ stashData }}/lib/{{ mysqlConnectorJar }}
+  sudo: yes
+
+- name: stop stash
+  raw: /etc/init.d/stash stop
+  sudo: yes
+
+- name: simulate long running op (30 sec), wait for up to 75 sec, poll every 5 sec
+  command: /bin/sleep 30
+  async: 75
+  poll: 5
+
+- name: start stash
+  raw: /etc/init.d/stash start
+  sudo: yes

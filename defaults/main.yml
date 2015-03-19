@@ -1,0 +1,15 @@
+---
+
+stashServer: 8006
+stashHttp: 7990
+stashHome: /var/atlassian/application-data/stash
+stashData: /opt/atlassian/stash
+stashExec: atlassian-stash-3.7.1-x64.bin
+stashUrl: https://www.atlassian.com/software/stash/downloads/binary/{{ stashExec }}
+mysqlHost: localhost
+mysqlPort: 3306
+mysqlDatabase: stash
+mysqlUser: travis
+mysqlPasswd: 
+mysqlConnectorJar: mysql-connector-java-5.1.34-bin.jar
+mysqlConnectorUrl: http://files.configure.systems/{{ mysqlConnectorJar }}

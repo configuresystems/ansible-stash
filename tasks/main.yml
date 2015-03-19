@@ -27,14 +27,14 @@
   sudo: yes
 
 - name: get direcotry listing for debug
-  raw: ls -al {{ stashData }}
+  raw: ls -al {{ stashData }}/3.7.1
   register: listing
 
 - debug: var=listing
 
 - name: Download MySQL Connector
   get_url: url={{ mysqlConnectorUrl }}
-           dest={{ stashData }}/lib/{{ mysqlConnectorJar }}
+           dest={{ stashData }}/3.7.1/lib/{{ mysqlConnectorJar }}
   sudo: yes
 
 - name: stop stash

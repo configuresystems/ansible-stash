@@ -38,7 +38,7 @@
   sudo: yes
 
 - name: stop stash
-  raw: {{ stashData }}/3.7.1/bin/stop-stash.sh
+  raw: "{{ stashData }}"/3.7.1/bin/stop-stash.sh
   sudo: yes
 
 - name: simulate long running op (30 sec), wait for up to 75 sec, poll every 5 sec
@@ -47,5 +47,5 @@
   poll: 5
 
 - name: start stash
-  raw: {{ stashData }}/3.7.1/bin/start-stash.sh
+  raw: "{{ stashData }}"/3.7.1/bin/start-stash.sh
   sudo: yes

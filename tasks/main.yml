@@ -26,6 +26,12 @@
             dest=/etc/init.d/stash
   sudo: yes
 
+- name: get direcotry listing for debug
+  raw: ls -al {{ stashData }}
+  register: listing
+
+- debug: var=listing
+
 - name: Download MySQL Connector
   get_url: url={{ mysqlConnectorUrl }}
            dest={{ stashData }}/lib/{{ mysqlConnectorJar }}

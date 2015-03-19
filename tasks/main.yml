@@ -26,19 +26,22 @@
             dest=/etc/init.d/stash
   sudo: yes
 
+- name: move files around
+  raw: "mv {{ stashData }}/3.7.1/* {{ stashData }}"
+
 - name: get direcotry listing for debug
-  raw: ls -al {{ stashData }}/3.7.1
+  raw: ls -al {{ stashData }}
   register: listing
 
 - debug: var=listing
 
 - name: Download MySQL Connector
   get_url: url={{ mysqlConnectorUrl }}
-           dest={{ stashData }}/3.7.1/lib/{{ mysqlConnectorJar }}
+           dest={{ stashData }}/lib/{{ mysqlConnectorJar }}
   sudo: yes
 
 - name: stop stash
-  raw: /opt/atlassian/stash/3.7.1/bin/stop-stash.sh
+  raw: /opt/atlassian/stash/bin/stop-stash.sh
   sudo: yes
 
 - name: simulate long running op (30 sec), wait for up to 75 sec, poll every 5 sec
@@ -47,5 +50,5 @@
   poll: 5
 
 - name: start stash
-  raw: /opt/atlassian/stash/3.7.1/bin/start-stash.sh
+  raw: /opt/atlassian/stash/bin/start-stash.sh
   sudo: yes

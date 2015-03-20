@@ -21,6 +21,13 @@
   raw: /tmp/{{ stashExec }} -q -varfile /tmp/response.varfile
   sudo: yes
 
+- name: Create Stash Lib
+  file: path={{ stashHome }}/lib
+        owner=atlstash
+        group=atlstash
+        state=directory
+  sudo: yes
+ 
 - name: Copy Stash init.d File
   template: src=stash.init.d.j2
             dest=/etc/init.d/stash
@@ -38,9 +45,9 @@
   sudo: yes
 
 - name: stop stash
-  raw: cd /opt/atlassian/stash/3.7.1/bin && ./stop-stash.sh
+  raw: source ~/.bashrc && cd /opt/atlassian/stash/3.7.1/bin && ./stop-stash.sh
   sudo: yes
 
 - name: start stash
-  raw: cd /opt/atlassian/stash/3.7.1/bin && ./start-stash.sh
+  raw: source ~/.bashrc && cd /opt/atlassian/stash/3.7.1/bin && ./start-stash.sh
   sudo: yes

@@ -3,7 +3,7 @@
 stashServer: 8006
 stashHttp: 7990
 stashHome: /var/atlassian/application-data/stash
-stashData: /opt/atlassian/stash
+stashData: /opt/atlassian/stash/3.7.1
 stashExec: atlassian-stash-3.7.1-x64.bin
 stashUrl: https://www.atlassian.com/software/stash/downloads/binary/{{ stashExec }}
 mysqlHost: localhost

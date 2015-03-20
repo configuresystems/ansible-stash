@@ -26,9 +26,6 @@
             dest=/etc/init.d/stash
   sudo: yes
 
-- name: move files around
-  raw: "mv {{ stashData }}/3.7.1/* {{ stashData }}"
-
 - name: get direcotry listing for debug
   raw: ls -al {{ stashData }}
   register: listing

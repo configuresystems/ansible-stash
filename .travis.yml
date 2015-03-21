@@ -29,13 +29,15 @@ script:
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo -vvv
 
-  - curl -q http://localhost:7790
+  - sleep 30
+
+  - curl -q http://localhost:7990
 
   - curl -v http://localhost:7990
 
   # Debugging
 
-  - sudo tail -200 /opt/atlassian/stash/logs/catalina.out
+  - sudo tail -200 /opt/atlassian/stash/3.7.1/logs/catalina.out
 
   - sudo netstat -plnt
 

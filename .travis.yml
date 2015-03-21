@@ -31,7 +31,7 @@ script:
 
   - sleep 30
 
-  - curl -q http://localhost:7990
+  - curl -q http://localhost:7790
 
   - curl -v http://localhost:7990
 

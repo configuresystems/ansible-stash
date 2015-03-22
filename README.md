@@ -1,4 +1,4 @@
-# Ansible deployment for JIRA
+# Ansible deployment for Stash
 
 ## 0. Current Stats
 

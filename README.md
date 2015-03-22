@@ -4,19 +4,19 @@
 
 [![Build Status](https://travis-ci.org/configuresystems/ansible-stash.svg)](https://travis-ci.org/configuresystems/ansible-stash)
 
-Version: 1.0
-Updated: 03.22.2015
+|    Name         |    Description            |
+| --------------- | ------------------------- |
+| Version         | 1.0                       |
+| Updated         | 03.22.2015                |
+| Ansible Version | 1.8.4                     |
+| Author          | Johnny Martin             |
+| Website         | http://configure.systems/ |
+| License         | MIT                       |
 
-Ansible Version: 1.8.4
-
-Author: Johnny Martin
-Website: http://configure.systems/
-
-License: MIT
 
 ## 1. QuickStart
 
-```
+```bash
 git clone https://github.com/configuresystems/ansible-stash.git roles/ansible-stash
 # Create a playbook file to use, there's a sample one in tests/test.yml
 # Create a group_vars or update the default values in defaults/main.yml
@@ -51,13 +51,13 @@ Ansible installed on the local machine.
 
 #### 3.1 Ubuntu
 
-```
+```bash
 pip install ansible
 ```
 
 #### 3.2 Compile from Source
 
-```
+```bash
 git clone git://github.com/ansible/ansible.git --recursive
 cd ./ansible
 source ./hacking/env-setup
@@ -70,7 +70,7 @@ source ./hacking/env-setup
    or update the 'defaults/main.yml' file
 3. run the Ansible playbook, the fastest way is:
 
-```
+```bash
 ansible-playbook ansible-stash.yml
 ```
 

@@ -19,7 +19,6 @@ install:
 
 before_script:
   - mysql -e 'create database stash;'
-  - sudo mysql stash -e 'show tables;'
  
 script:
   # Check the role/playbook's syntax.

@@ -1,5 +1,14 @@
 ---
 
+- name: Set up git repository
+  apt_repository: repo='ppa:git-core/ppa'
+  sudo: yes
+
+- name: install git
+  apt: name=git
+       update_cache=yes
+       state=latest
+
 - name: Download Stash
   get_url: url={{ stashUrl }}
            dest=/tmp

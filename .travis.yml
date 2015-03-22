@@ -48,7 +48,7 @@ script:
 
   # Ensure Stash is on 7990
   - >
-    netstat -plnt
+    sudo netstat -plnt
     | grep -q 7990 
     && (echo 'Stash is running: pass' && exit 0) 
     || (echo 'Stash is running: fail' && exit 1)

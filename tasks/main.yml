@@ -33,21 +33,17 @@
             dest=/etc/init.d/stash
   sudo: yes
 
-- name: get direcotry listing for debug
-  raw: ls -al {{ stashData }}
-  register: listing
-
-- debug: var=listing
-
 - name: Download MySQL Connector
   get_url: url={{ mysqlConnectorUrl }}
            dest={{ stashData }}/lib/{{ mysqlConnectorJar }}
   sudo: yes
 
 - name: stop stash
-  #raw: source ~/.bashrc && cd /opt/atlassian/stash/3.7.1/bin && ./stop-stash.sh
-  raw: sudo -u atlstash /opt/atlassian/stash/3.7.1/bin/stop-stash.sh
+  raw: "{{ stashData }}/bin/stop-stash.sh"
+  sudo_user: atlstash
+  sudo: yes
 
 - name: start stash
-  raw: sudo -u atlstash /opt/atlassian/stash/3.7.1/bin/start-stash.sh
-  #raw: source ~/.bashrc && cd /opt/atlassian/stash/3.7.1/bin && ./start-stash.sh
+  raw: "{{ stashData }}/bin/start-stash.sh"
+  sudo_user: atlstash
+  sudo: yes

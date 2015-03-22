@@ -19,7 +19,6 @@ install:
 
 before_script:
   - mysql -e 'create database stash;'
-  - sudo mysql stash -e 'show tables;'
  
 script:
   # Check the role/playbook's syntax.
@@ -29,15 +28,26 @@ script:
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo -vvv
 
+  # Allow time for Stash to start
   - sleep 30
 
-  - curl http://localhost:7990
+  # Ensure Stash is accessible via HTTP
+  - >
+    curl -Is http://localhost:7990/ 
+    | grep -q "HTTP/1.1 302 Found" 
+    && (echo 'Stash is accessible: pass' && exit 0) 
+    || (echo 'Stash is accessible: fail' && exit 1)
 
-  - curl -v http://localhost:7990
+  # Ensure git is versioned 2.3.3
+  - >
+    git --version 
+    | grep -q "2.3.3" 
+    && (echo 'git version is 2.3.3: pass' && exit 0) 
+    || (echo 'git version is 2.3.3: fail' && exit 1)
 
-  # Debugging
-
-  - sudo tail -200 /opt/atlassian/stash/3.7.1/logs/catalina.out
-
-  - sudo netstat -plnt
-
+  # Ensure Stash is on 7990
+  - >
+    sudo netstat -plnt
+    | grep -q 7990 
+    && (echo 'Stash is running: pass' && exit 0) 
+    || (echo 'Stash is running: fail' && exit 1)

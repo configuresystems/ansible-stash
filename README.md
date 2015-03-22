@@ -2,7 +2,7 @@
 
 ## 0. Current Stats
 
-[![Build Status](https://travis-ci.org/configuresystems/ansible-stash.svg)](https://travis-ci.org/configuresystems/ansible-stash)
+[![Build Status](https://travis-ci.org/configuresystems/ansible-stash.svg?branch=iss1)](https://travis-ci.org/configuresystems/ansible-stash)
 
 |    Name         |    Description            |
 | --------------- | ------------------------- |

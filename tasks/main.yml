@@ -48,11 +48,11 @@
   sudo: yes
 
 - name: stop stash
-  raw: "{{ stashData }}/bin/stop-stash.sh"
-  sudo_user: atlstash
+  service: name=atlstash
+           state=stopped
   sudo: yes
 
 - name: start stash
-  raw: "{{ stashData }}/bin/start-stash.sh"
-  sudo_user: atlstash
+  service: name=atlstash
+           state=started
   sudo: yes

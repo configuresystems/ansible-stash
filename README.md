@@ -2,7 +2,7 @@
 
 ## 0. Current Stats
 
-[![Build Status](https://travis-ci.org/configuresystems/ansible-stash.svg?branch=iss1)](https://travis-ci.org/configuresystems/ansible-stash)
+[![Build Status](https://travis-ci.org/configuresystems/ansible-stash.svg?branch=iss2)](https://travis-ci.org/configuresystems/ansible-stash)
 
 |    Name         |    Description            |
 | --------------- | ------------------------- |
@@ -35,6 +35,10 @@ ansible-playbook -i path/to/inventory ansible-stash.yml
   - [4.1 Playbook Arguments](#41-playbook-arguments)
   - [4.2 Not Currently in Use](#41-not-currently-in-use)
 - [5. After Install](#5-after-install)
+- [6. Stash Control](#6-stash-control)
+  - [6.1 Stop](#61-stop)
+  - [6.2 Start](#62-start)
+  - [6.3 Restart](#63-restart)
 
 
 ## 2. Overview
@@ -74,7 +78,7 @@ source ./hacking/env-setup
 ansible-playbook ansible-stash.yml
 ```
 
-### 4.1 Playbook Arguments
+#### 4.1 Playbook Arguments
 
 - stashServer: Stash Controller Port
 - stashHttp: Accessible Stash Port
@@ -86,7 +90,7 @@ ansible-playbook ansible-stash.yml
                      this is that file
 - mysqlConnectorUrl: Where to download the the connector plugin from
   
-### 4.2 Not Currently in use
+#### 4.2 Not Currently in use
 - mysqlHost: Host of the database to utilize 
 - mysqlPort: Database port
 - mysqlDatabase: Database Name
@@ -102,3 +106,22 @@ http://your.ip.address.yes:{{ stashHttp }}
 
 Finish up the install process by adding the database info and
 product key probvided by Atlassian.
+
+### 6. Stash Control
+
+#### 6.1 Stop
+
+```bash
+service atlstash stop
+```
+
+#### 6.2 Start
+
+```bash
+service atlstash start
+```
+
+#### 6.3 Restart
+
+```bash
+service atlstash restart
